@@ -29,6 +29,10 @@ public class Ad {
     @JoinColumn(name = "room_id")
     private Room room;
 
+    @ManyToOne
+    @JoinColumn(name = "landlord")
+    private User user;
+
     private boolean petAllowed;
     private boolean parking;
     private boolean owner_occupied;

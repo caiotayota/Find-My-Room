@@ -17,11 +17,14 @@ public class Property {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "property_id")
     private long id;
 
-    @OneToMany
-    @JoinColumn(name = "property_id", nullable = false)
+    @OneToMany(mappedBy = "property")
     private List<Room> rooms = new ArrayList<>();
+
+    @OneToMany(mappedBy = "property")
+    private List<Ad> ads = new ArrayList<>();
 
     String streetAddress;
     String eirCode;
