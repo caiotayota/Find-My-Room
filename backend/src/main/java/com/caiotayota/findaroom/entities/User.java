@@ -1,7 +1,9 @@
 package com.caiotayota.findaroom.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -12,6 +14,8 @@ import javax.validation.constraints.Size;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -25,7 +29,7 @@ public class User {
     private UserPreferences userPreferences;
 
     @Size(min = 8, message = "The password must have at least 8 characters.")
-    private String password;
+    private String encryptedPassword;
 
     @NotBlank
     private String firstName;
