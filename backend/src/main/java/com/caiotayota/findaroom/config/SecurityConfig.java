@@ -62,18 +62,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .httpBasic().and()
+                .httpBasic()
+                    .and()
                 .authorizeRequests()
-                .antMatchers("/api/register", "/properties").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/api/register", "/actuator/shutdown").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .usernameParameter("email")
-                .permitAll()
-                .and()
+                    .usernameParameter("email")
+                    .permitAll()
+                    .and()
                 .logout()
-                .permitAll()
-                .and()
+                    .permitAll()
+                    .and()
                 .csrf().disable()
                 .headers().frameOptions().disable();
         return http.build();

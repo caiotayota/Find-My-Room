@@ -18,6 +18,13 @@ import javax.validation.constraints.Size;
 @Setter
 public class User {
 
+    public User(String email, String encryptedPassword, String firstName, String lastName) {
+        this.email = email;
+        this.encryptedPassword = encryptedPassword;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     @Id
     @Column(name = "email", nullable = false)
     @Email(regexp = ".+@.+\\..+", message = "Email is not valid.")
