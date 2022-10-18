@@ -12,7 +12,4 @@ import java.time.LocalDate;
 @Repository
 public interface PropertyRepository extends JpaRepository<Property, Long> {
 
-    @Query("SELECT obj FROM Property obj ORDER BY obj.eirCode")
-    Page<Property> findProperties(LocalDate min, LocalDate max, Pageable pageable);
-
 }
