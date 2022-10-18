@@ -17,7 +17,7 @@ public class AdService {
         this.repository = repository;
     }
 
-    public List<Ad> findProperties() {
+    public List<Ad> findAds() {
         return repository.findAll();
     }
 }
