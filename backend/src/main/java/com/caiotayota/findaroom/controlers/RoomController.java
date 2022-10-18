@@ -1,7 +1,7 @@
 package com.caiotayota.findaroom.controlers;
 
-import com.caiotayota.findaroom.entities.Property;
-import com.caiotayota.findaroom.services.PropertyService;
+import com.caiotayota.findaroom.entities.Room;
+import com.caiotayota.findaroom.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/properties", produces = MediaType.APPLICATION_JSON_VALUE)
-public class PropertyController {
+@RequestMapping(value = "/api/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
+public class RoomController {
 
-    private final PropertyService service;
+    private final RoomService service;
 
     @Autowired
-    public PropertyController(PropertyService service) {
+    public RoomController(RoomService service) {
         this.service = service;
     }
 
     @GetMapping
-    public List<Property> findProperties() {
-        return service.findProperties();
+    public List<Room> findProperties() {
+        return service.findRooms();
     }
 }
