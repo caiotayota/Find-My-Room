@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "properties")
@@ -20,16 +18,12 @@ public class Property {
     @Column(name = "property_id")
     private long id;
 
-    @OneToMany(mappedBy = "property")
-    private List<Room> rooms = new ArrayList<>();
-
-    @OneToMany(mappedBy = "property")
-    private List<Ad> ads = new ArrayList<>();
-
-    String streetAddress;
-    String eirCode;
-    boolean washingMachine;
-    boolean dryer;
-    boolean dishWasher;
+    private String streetAddress;
+    private String eirCode;
+    private boolean washingMachine;
+    private boolean dryer;
+    private boolean dishWasher;
+    private boolean petAllowed;
+    private boolean parking;
 
 }

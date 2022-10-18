@@ -3,7 +3,6 @@ package com.caiotayota.findaroom.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -22,19 +21,13 @@ public class Ad {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
-
-    @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "landlord")
+    @JoinColumn(name = "lessor")
     private User user;
 
-    private boolean petAllowed;
-    private boolean parking;
     private boolean owner_occupied;
     private BigDecimal rent;
     private LocalDate date;

@@ -15,17 +15,17 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
+    @Column(name = "room_id", updatable = false, nullable = false)
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "property_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "property_id")
     private Property property;
 
     private String roomType;
     private boolean ensuiteBathroom;
 
     @OneToOne
-    @JoinColumn(name = "landlord")
-    private User landlord;
+    @JoinColumn(name = "lessor")
+    private User lessor;
 }
