@@ -29,6 +29,11 @@ public class UserService {
             String encodedPassword = passwordEncoder.encode(user.getEncryptedPassword());
             user.setEncryptedPassword(encodedPassword);
             repository.save(user);
+            System.out.println("The user was created!");
         }
+    }
+
+    public Optional<User> getUser(String userId) {
+        return repository.findById(userId);
     }
 }

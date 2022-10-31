@@ -20,4 +20,8 @@ public class AdService {
     public List<Ad> findAds() {
         return repository.findAll();
     }
+
+    public Ad createAd(Ad ad) {
+        return repository.save(ad);
+    }
 }
