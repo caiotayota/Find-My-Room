@@ -1,19 +1,17 @@
 package com.caiotayota.findaroom.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.caiotayota.findaroom.services.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -21,68 +19,53 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    private final UserDetailsService userDetailsService;
-
-
-    @Autowired
-    public SecurityConfig(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptPasswordEncoder) {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user")
-                .password(bCryptPasswordEncoder.encode("userPass"))
-                .roles("USER")
-                .build());
-        manager.createUser(User.withUsername("admin")
-                .password(bCryptPasswordEncoder.encode("adminPass"))
-                .roles("USER", "ADMIN")
-                .build());
-        return manager;
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
     }
 
     @Bean
-    public AuthenticationManager authManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsService userDetailsService)
-            throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder)
-                .and()
-                .build();
-    }
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .httpBasic()
-                    .and()
-                .authorizeRequests()
-                    .antMatchers("/api/register", "/actuator/shutdown").permitAll()
-                    .anyRequest().authenticated()
-                    .and()
-                .formLogin()
+
+        http.authorizeRequests()
+                .antMatchers( "/register").permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable()
+                .formLogin() // form login
                     .usernameParameter("email")
                     .permitAll()
-                    .and()
-                .logout()
-                    .permitAll()
-                    .and()
-                .csrf().disable()
-                .headers().frameOptions().disable();
+                .and().httpBasic()
+                .and().logout().permitAll();
+
+        http.authenticationProvider(authenticationProvider());
+        http.headers().frameOptions().disable();
+
         return http.build();
     }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico");
+                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/register");
     }
 }
