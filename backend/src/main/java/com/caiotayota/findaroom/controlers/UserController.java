@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping
 public class UserController {
 
     private final UserService userService;
@@ -20,7 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/register", produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public void register(@Valid @RequestBody User user) {
         userService.save(user);
