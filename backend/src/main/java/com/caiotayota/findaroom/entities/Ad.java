@@ -1,12 +1,16 @@
 package com.caiotayota.findaroom.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "ads")
@@ -30,6 +34,9 @@ public class Ad {
 
     private boolean owner_occupied;
     private BigDecimal rent;
-    private LocalDate date;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    Date date;
 
 }
