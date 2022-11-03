@@ -1,6 +1,5 @@
-package com.caiotayota.findaroom.controlers;
+package com.caiotayota.findaroom.controllers;
 
-import com.caiotayota.findaroom.entities.Ad;
 import com.caiotayota.findaroom.entities.User;
 import com.caiotayota.findaroom.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +43,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@PathVariable String email, @RequestBody @Valid User updatedUser) {
         return service.updateUser(email, updatedUser);
+    }
+
+    @DeleteMapping("/{email}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable String email) {
+        service.deleteUser(email);
     }
 }

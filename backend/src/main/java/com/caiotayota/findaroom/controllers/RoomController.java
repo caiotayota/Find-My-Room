@@ -1,6 +1,5 @@
-package com.caiotayota.findaroom.controlers;
+package com.caiotayota.findaroom.controllers;
 
-import com.caiotayota.findaroom.entities.Ad;
 import com.caiotayota.findaroom.entities.Room;
 import com.caiotayota.findaroom.entities.User;
 import com.caiotayota.findaroom.services.RoomService;
