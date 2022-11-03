@@ -48,7 +48,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers( "/register").permitAll()
+                .antMatchers( "/api/user/register").permitAll()
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .formLogin() // form login
@@ -66,6 +66,6 @@ public class SecurityConfig {
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web) -> web.ignoring()
-                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/register");
+                .antMatchers("/css/**", "/js/**", "/img/**", "/lib/**", "/favicon.ico", "/api/user/register");
     }
 }

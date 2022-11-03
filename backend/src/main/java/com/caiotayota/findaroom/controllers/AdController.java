@@ -24,36 +24,36 @@ public class AdController {
         this.service = service;
     }
 
-    @GetMapping
-    public List<Ad> getAds() {
-        return service.getAds();
-    }
-
     @GetMapping("/{id}")
     public Optional<Ad> getAd(@PathVariable long id) {
         return service.getAd(id);
     }
 
+    @GetMapping
+    public List<Ad> getAds() {
+        return service.getAds();
+    }
+
     @GetMapping(value = "/search/", params = "parking")
-    public List<Ad> getPropertyByParking(@RequestParam @Valid boolean parking) {
-        return service.getAdByParking(parking);
+    public List<Ad> getAdsByParking(@RequestParam @Valid boolean parking) {
+        return service.getAdsByParking(parking);
     }
 
     @GetMapping(value = "/search/", params = "user")
-    public List<Ad> getPropertyByUser(@RequestParam @Valid User user) {
-        return service.getAdByUser(user);
+    public List<Ad> getAdsByUser(@RequestParam @Valid User user) {
+        return service.getAdsByUser(user);
     }
 
     @PostMapping(path = "/new", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Ad createAd(@RequestBody @Valid Ad adToSave) {
-        return service.createAd(adToSave);
+    public Ad createAd(@RequestBody @Valid Ad ad, @RequestParam long roomId) {
+        return service.createAd(ad, roomId);
     }
 
     @PutMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAd(@PathVariable long id, @RequestBody @Valid Ad ad) {
-        service.updateAd(id, ad);
+    @ResponseStatus(HttpStatus.OK)
+    public Ad updateAd(@PathVariable long id, @RequestBody @Valid Ad updatedAd) {
+        return service.updateAd(id, updatedAd);
     }
 
     @DeleteMapping("/{id}")
