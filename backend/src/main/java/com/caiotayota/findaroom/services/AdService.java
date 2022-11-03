@@ -5,6 +5,8 @@ import com.caiotayota.findaroom.entities.User;
 import com.caiotayota.findaroom.exceptions.AdNotFoundException;
 import com.caiotayota.findaroom.exceptions.UserNotAllowedException;
 import com.caiotayota.findaroom.repositories.AdRepository;
+import com.caiotayota.findaroom.repositories.RoomRepository;
+import com.caiotayota.findaroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,42 +19,48 @@ import java.util.Optional;
 @Service
 public class AdService {
 
-    private final AdRepository repository;
+    private final AdRepository adRepository;
+    private final RoomRepository roomRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public AdService(AdRepository repository) {
-        this.repository = repository;
-    }
-
-    public String getLoggedUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return auth.getPrincipal().toString();
-    }
-
-    public List<Ad> getAds() {
-        return repository.findAll();
+    public AdService(AdRepository adRepository, RoomRepository roomRepository, UserRepository userRepository) {
+        this.adRepository = adRepository;
+        this.roomRepository = roomRepository;
+        this.userRepository = userRepository;
     }
 
     public Optional<Ad> getAd(long id) {
-        return repository.findById(id);
+        return adRepository.findById(id);
     }
 
-    public List<Ad> getAdByUser(User user) {
-        List<Ad> properties = repository.findByUser(user);
-        return properties != null ? properties : Collections.emptyList();
+    public List<Ad> getAds() {
+        return adRepository.findAll();
     }
 
-    public List<Ad> getAdByParking(boolean parking) {
-        List<Ad> properties = repository.findByParking(parking);
-        return properties != null ? properties : Collections.emptyList();
+    public List<Ad> getAdsByUser(User user) {
+        List<Ad> ads = adRepository.findByUser(user);
+        return ads != null ? ads : Collections.emptyList();
     }
 
-    public Ad createAd(Ad ad) {
-        return repository.save(ad);
+    public List<Ad> getAdsByParking(boolean parking) {
+        List<Ad> ads = adRepository.findByParking(parking);
+        return ads != null ? ads : Collections.emptyList();
     }
 
-    public void updateAd(long id, Ad updatedAd) {
-        Optional<Ad> ad = repository.findById(id);
+    public Ad createAd(Ad ad, long roomId) {
+
+        if (!roomRepository.findById(roomId).get().getUser().getEmail().equals(getLoggedUser())) {
+            throw new UserNotAllowedException();
+        }
+
+        ad.setRoom(roomRepository.findById(roomId).get());
+        ad.setUser(userRepository.findById(getLoggedUser()).get());
+        return adRepository.save(ad);
+    }
+
+    public Ad updateAd(long id, Ad updatedAd) {
+        Optional<Ad> ad = adRepository.findById(id);
 
         if (ad.isEmpty()) throw new AdNotFoundException();
 
@@ -62,16 +70,21 @@ public class AdService {
 
         ad.get().setOwner_occupied(updatedAd.isOwner_occupied());
         ad.get().setRent(updatedAd.getRent());
-        repository.save(ad.get());
+        return adRepository.save(ad.get());
     }
 
     public void deleteAd(long id) {
-        Optional<Ad> ad = repository.findById(id);
+        Optional<Ad> ad = adRepository.findById(id);
         if (ad.isEmpty()) throw new AdNotFoundException();
 
         if (!ad.get().getUser().getEmail().equals(getLoggedUser())) {
             throw new UserNotAllowedException();
         }
-        repository.deleteById(id);
+        adRepository.deleteById(id);
+    }
+
+    public String getLoggedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return auth.getPrincipal().toString();
     }
 }
