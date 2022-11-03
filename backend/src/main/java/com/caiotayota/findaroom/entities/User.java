@@ -31,10 +31,6 @@ public class User {
     @NotBlank
     private String email;
 
-    @OneToOne
-    @JoinColumn(name = "email")
-    private UserPreferences userPreferences;
-
     @Size(min = 8, message = "The password must have at least 8 characters.")
     private String encryptedPassword;
 

@@ -18,14 +18,15 @@ public class Room {
     @Column(name = "room_id")
     private long id;
 
-    @ManyToOne
-    @JoinColumn(name = "property_id")
-    private Property property;
-
+    private String streetAddress;
+    private String eirCode;
     private String roomType;
     private boolean ensuiteBathroom;
+    private boolean heating;
+    private boolean carpeted;
 
     @OneToOne
     @JoinColumn(name = "lessor")
-    private User lessor;
+    private User user;
+
 }
