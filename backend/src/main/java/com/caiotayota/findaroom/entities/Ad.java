@@ -1,6 +1,5 @@
 package com.caiotayota.findaroom.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,8 +7,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -24,7 +21,7 @@ public class Ad {
     @Column(name = "ad_id")
     private long id;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
@@ -32,8 +29,14 @@ public class Ad {
     @JoinColumn(name = "lessor")
     private User user;
 
-    private boolean owner_occupied;
     private BigDecimal rent;
+    private boolean billsIncluded;
+    private boolean owner_occupied;
+    private boolean parking;
+    private boolean petAllowed;
+    private boolean washingMachine;
+    private boolean dryer;
+    private boolean dishWasher;
 
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp

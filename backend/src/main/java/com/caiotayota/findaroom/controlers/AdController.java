@@ -2,7 +2,6 @@ package com.caiotayota.findaroom.controlers;
 
 import com.caiotayota.findaroom.entities.Ad;
 import com.caiotayota.findaroom.entities.User;
-import com.caiotayota.findaroom.entities.UserPreferences;
 import com.caiotayota.findaroom.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +34,17 @@ public class AdController {
         return service.getAd(id);
     }
 
-    @PostMapping(path = "/create", consumes = APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/search/", params = "parking")
+    public List<Ad> getPropertyByParking(@RequestParam @Valid boolean parking) {
+        return service.getAdByParking(parking);
+    }
+
+    @GetMapping(value = "/search/", params = "user")
+    public List<Ad> getPropertyByUser(@RequestParam @Valid User user) {
+        return service.getAdByUser(user);
+    }
+
+    @PostMapping(path = "/new", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public Ad createAd(@RequestBody @Valid Ad adToSave) {
         return service.createAd(adToSave);
