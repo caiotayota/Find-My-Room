@@ -1,9 +1,8 @@
-package com.caiotayota.findaroom.services.impl;
+package com.caiotayota.findmyroom.services.impl;
 
-import com.caiotayota.findaroom.config.UserDetailsImp;
-import com.caiotayota.findaroom.entities.User;
-import com.caiotayota.findaroom.repositories.UserRepository;
-import lombok.AllArgsConstructor;
+import com.caiotayota.findmyroom.config.UserDetailsImp;
+import com.caiotayota.findmyroom.entities.User;
+import com.caiotayota.findmyroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

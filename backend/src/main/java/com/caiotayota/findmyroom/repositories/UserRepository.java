@@ -1,6 +1,6 @@
-package com.caiotayota.findaroom.repositories;
+package com.caiotayota.findmyroom.repositories;
 
-import com.caiotayota.findaroom.entities.User;
+import com.caiotayota.findmyroom.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

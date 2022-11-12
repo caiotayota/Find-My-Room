@@ -1,6 +1,6 @@
-package com.caiotayota.findaroom.config;
+package com.caiotayota.findmyroom.config;
 
-import com.caiotayota.findaroom.services.impl.UserDetailsServiceImpl;
+import com.caiotayota.findmyroom.services.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

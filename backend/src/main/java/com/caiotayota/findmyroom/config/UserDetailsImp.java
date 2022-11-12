@@ -1,6 +1,6 @@
-package com.caiotayota.findaroom.config;
+package com.caiotayota.findmyroom.config;
 
-import com.caiotayota.findaroom.entities.User;
+import com.caiotayota.findmyroom.entities.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

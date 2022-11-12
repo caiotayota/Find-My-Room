@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.caiotayota</groupId>
-	<artifactId>findaroom</artifactId>
+	<artifactId>findmyroom</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>findaroom</name>
+	<name>findmyroom</name>
 	<description>Find a room to rent in Dublin</description>
 	<properties>
 		<java.version>17</java.version>

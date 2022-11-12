@@ -1,8 +1,8 @@
-package com.caiotayota.findaroom.controllers;
+package com.caiotayota.findmyroom.controllers;
 
-import com.caiotayota.findaroom.entities.Room;
-import com.caiotayota.findaroom.entities.User;
-import com.caiotayota.findaroom.services.RoomService;
+import com.caiotayota.findmyroom.entities.Room;
+import com.caiotayota.findmyroom.entities.User;
+import com.caiotayota.findmyroom.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

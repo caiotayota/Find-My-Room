@@ -1,12 +1,12 @@
-package com.caiotayota.findaroom.services;
+package com.caiotayota.findmyroom.services;
 
-import com.caiotayota.findaroom.entities.Ad;
-import com.caiotayota.findaroom.entities.User;
-import com.caiotayota.findaroom.exceptions.AdNotFoundException;
-import com.caiotayota.findaroom.exceptions.UserNotAllowedException;
-import com.caiotayota.findaroom.repositories.AdRepository;
-import com.caiotayota.findaroom.repositories.RoomRepository;
-import com.caiotayota.findaroom.repositories.UserRepository;
+import com.caiotayota.findmyroom.entities.Ad;
+import com.caiotayota.findmyroom.entities.User;
+import com.caiotayota.findmyroom.exceptions.AdNotFoundException;
+import com.caiotayota.findmyroom.exceptions.UserNotAllowedException;
+import com.caiotayota.findmyroom.repositories.AdRepository;
+import com.caiotayota.findmyroom.repositories.RoomRepository;
+import com.caiotayota.findmyroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

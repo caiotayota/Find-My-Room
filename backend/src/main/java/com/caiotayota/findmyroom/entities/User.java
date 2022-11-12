@@ -1,4 +1,4 @@
-package com.caiotayota.findaroom.entities;
+package com.caiotayota.findmyroom.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
