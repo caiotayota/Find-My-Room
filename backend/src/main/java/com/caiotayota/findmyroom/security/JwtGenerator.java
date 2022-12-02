@@ -1,4 +1,4 @@
-package com.caiotayota.findmyroom.config;
+package com.caiotayota.findmyroom.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

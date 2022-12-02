@@ -1,4 +1,4 @@
-package com.caiotayota.findmyroom.config;
+package com.caiotayota.findmyroom.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

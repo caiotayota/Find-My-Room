@@ -1,4 +1,4 @@
-package com.caiotayota.findmyroom.config;
+package com.caiotayota.findmyroom.security;
 
 import com.caiotayota.findmyroom.entities.Role;
 import com.caiotayota.findmyroom.entities.User;
