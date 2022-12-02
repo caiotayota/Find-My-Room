@@ -1,6 +1,5 @@
-package com.caiotayota.findmyroom.services.impl;
+package com.caiotayota.findmyroom.config;
 
-import com.caiotayota.findmyroom.config.UserDetailsImp;
 import com.caiotayota.findmyroom.entities.User;
 import com.caiotayota.findmyroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findById(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + email));
+         User user = userRepository.findUserByEmail(email);
 
-        return new UserDetailsImp(user);
+         if (user == null) {
+             throw new UsernameNotFoundException("User not found: " + email);
+         }
+
+        return user;
     }
 }

@@ -3,8 +3,10 @@ package com.caiotayota.findmyroom.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "rooms")
@@ -28,5 +30,13 @@ public class Room {
     @OneToOne
     @JoinColumn(name = "lessor")
     private User user;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private Date updatedAt;
+
 
 }

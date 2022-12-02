@@ -19,7 +19,7 @@ public class Ad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ad_id")
-    private long id;
+    private Long id;
 
     @OneToOne
     @JoinColumn(name = "room_id")
@@ -39,7 +39,10 @@ public class Ad {
     private boolean dishWasher;
 
     @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
-    Date date;
+    private Date updatedAt;
 
 }

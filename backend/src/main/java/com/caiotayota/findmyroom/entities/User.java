@@ -9,30 +9,25 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-@Entity
-@Table(name = "users")
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Entity @Table(name = "users")
 public class User {
 
-    public User(String email, String encryptedPassword, String firstName, String lastName) {
-        this.email = email;
-        this.encryptedPassword = encryptedPassword;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     @Id
-    @Column(name = "email", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Email(regexp = ".+@.+\\..+", message = "Email is not valid.")
     @NotBlank
     private String email;
 
-    @Size(min = 8, message = "The password must have at least 8 characters.")
-    private String encryptedPassword;
+    @Size(min = 8, message = "Password must have at least 8 characters.")
+    private String password;
 
     @NotBlank
     private String firstName;
@@ -45,4 +40,19 @@ public class User {
     private String phoneNo;
     private String ppsNo;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private List<Role> roles = new ArrayList<>();
+
+    private String verificationCode;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date verificationCodeSentAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updatedAt;
 }
+
