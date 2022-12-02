@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface AdRepository extends JpaRepository<Ad, Long> {
-
     List<Ad> findByUser(User user);
     List<Ad> findByParking(boolean parking);
-
 }
