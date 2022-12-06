@@ -1,65 +1,23 @@
 // import { useState } from 'react'
 import './App.css';
 import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
+import Register from './components/Register/Register';
+import SearchResponse from './components/SearchResponse/SearchResponse';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
+import Layout from './components/Layout/Layout';
 
 function App() {
   return (
     <>
-      <header>
-        <Header />
-      </header>
-      <section>
-        <h1>Lorem ipsum dolor</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
-          nulla eligendi aut, molestias qui quam nihil eius accusamus, illo rem
-          doloremque impedit vitae ut. Repellendus harum doloremque nobis a
-          inventore!
-        </p>
-      </section>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
     </>
   );
 }
