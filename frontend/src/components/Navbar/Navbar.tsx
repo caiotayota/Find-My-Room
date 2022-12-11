@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 import './NavbarStyles.css';
 
@@ -40,10 +42,12 @@ function Navbar() {
     <>
       <div className={`navbar ${nav && 'navbar-active'}`}>
         <div>
-          <img className={`logo ${nav && 'logo-active'}`} height="65" />
-          <Menu />
+          <a href="#">
+            <img className={`logo ${logo && 'logo-active'}`} height="65" />
+          </a>
+          <Menu menuOpen={menuOpen} />
           <div className="menu-btn">
-            <i className="fas fa-bars"></i>
+            <FontAwesomeIcon icon={faBars} onClick={menuToggle} />
           </div>
         </div>
       </div>

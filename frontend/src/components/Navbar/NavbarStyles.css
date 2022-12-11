@@ -13,18 +13,29 @@ ul {
     font-size: 20px;
   }
   
-  .navbar ul {
-    margin-top: 10px;
-  }
   
   .navbar a {
     text-decoration: none;
     color: #fff;
     transition: 0.3s
   }
+
+  .navbar button {
+    background-color: transparent;
+    margin-top: 0;
+  }
   
+  .navbar button:hover {
+    background-color: rgb(255, 255, 255);
+    color: #000000;
+  }
+
   .navbar a:hover {
     color: #b2b2b2;
+  }
+
+  .navbar button a:hover {
+    color: #000000;
   }
    
   .menu {
@@ -39,17 +50,24 @@ ul {
     position: absolute;
     left: 40px;
     top: 20px;
-    content: url(../../assets/img/logo-transparente.png);
+    content: url(../../assets/img/logo-white.png);
     
    }
 
+   .logo:hover{
+    transform: scale(1.1);
+   }
+
    .logo-active {
-    content: url(../../assets/img/logo-transparente.png);
+    content: url(../../assets/img/logo-white.png);
+
    }
 
   .menu-btn {
+    position: absolute;
+    right: 50px;
     cursor: pointer;
-    font-size: 1.3em;
+    font-size: 2em;
     display: none;
     transition: 0.3s;
   }
@@ -63,10 +81,11 @@ ul {
   .navbar-active {
     position: fixed;
     background: #111;
+    height: 100px;
   }
   
   
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 900px) {
     .menu-btn {
       display: block;
     }
