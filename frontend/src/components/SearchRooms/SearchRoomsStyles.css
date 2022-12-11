@@ -1,0 +1,66 @@
+.ad-container {
+    min-height: 90vh;
+    margin-left: 50px;
+}
+
+#ads {
+    height: 120px;
+}
+
+.rent {
+    size: 20px;
+    text-size-adjust: 50px;
+}
+
+.search{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 70%;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+
+.search-active{
+    transform: translate(0, 0);
+    left: 250px;
+    top: 30px;
+    position: fixed;
+    width: 25%;
+    height: 40px;
+}
+
+.search__input{
+    flex: 1;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    font-size: 25px;
+    overflow: hidden;
+}
+
+.search__icon{
+    font-size: 25px;
+    color: #777;
+    padding-left: 5px;
+}
+
+@media screen and (max-width: 900px) {
+    .search {
+        top: 80%;
+    }
+    
+    .search-active{
+        transform: translate(0, 0);
+        left: 250px;
+        top: 30px;
+        position: fixed;
+        width: 25%;
+        height: 40px;
+    }
+  }
