@@ -1,0 +1,99 @@
+.img-container{
+    max-width: 100%;
+    display: flex;
+    background-color: black;
+}
+
+.left{
+    height: 100vh;
+    float: left;
+    width: 50%;
+    opacity: 0.5;
+    object-fit: cover;
+}
+
+.right {
+    background-color: white;
+    float: right;
+    width: 50%;
+    height: 100vh;
+    object-fit: cover;
+    align-items: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#logo {
+  width: 300px;
+  padding-bottom: 25px;
+}
+
+.form {
+    width: 60%;
+    
+}
+
+@media screen and (max-width: 900px) {
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .form {
+    margin: 0;
+  }
+}
+
+
+.form-container {
+  width: 100%;
+  max-width: 420px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+
+
+.form-container a, .form-container a:visited {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.form-container a:hover {
+  color: rgb(0, 31, 207);
+}
+
+.input {
+font-family: 'Nunito', sans-serif;
+font-size: 22px;
+padding: 0.25rem;
+margin-top: 1rem;
+border-radius: 0.5rem;
+padding: 0.5rem;
+}
+
+.error-msg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 2%;
+}
+
+.line {
+  display: inline-block;
+  color: #000;
+}
+
