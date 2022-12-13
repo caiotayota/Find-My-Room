@@ -65,7 +65,7 @@ function AdItemList() {
               }
             }
           }}
-          placeholder=" Search by location ..."
+          placeholder=" Find my room ..."
         />
       </div>
       <div ref={adRef} id="ads"></div>
@@ -118,7 +118,7 @@ function AdItemList() {
                         ) : (
                           <></>
                         )}
-                        {ad.owner_occupied ? (
+                        {ad.ownerOccupied ? (
                           <Label>Owner Ocuupied</Label>
                         ) : (
                           <></>

@@ -53,8 +53,8 @@
 @media screen and (max-width: 900px) {
     .search {
         top: 80%;
-    }
-    
+    }    
+
     .search-active{
         transform: translate(0, 0);
         left: 250px;
@@ -62,5 +62,7 @@
         position: fixed;
         width: 25%;
         height: 40px;
+
+        
     }
   }
