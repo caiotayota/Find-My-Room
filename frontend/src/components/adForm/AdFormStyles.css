@@ -1,0 +1,134 @@
+.overlay2 {
+    background-color: rgba(0,0,0,0.5);
+    background-image: url('../../assets/img/cover-post.jpg');
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    top: 100px;
+    left: 0;
+    position: absolute;
+    object-fit: cover;
+    opacity: 1;
+}
+
+.modalContainer {
+    padding: 0 30px;
+    max-width: 70%;
+    width: 100%;
+    max-height: 75%;
+    height: 100%;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    background-color: rgba(0,0,0,0.7);
+    box-shadow: 0 0 18px 0 #fff;
+    overflow-y: scroll;
+    margin-top: 10%;
+    
+}
+
+.adForm {
+    display: flex;
+}
+
+.adForm select {
+    height: 33px;
+}
+
+.dropdown {
+    height: 40px;
+
+}
+
+.success {
+ padding: 50px 40px;
+}
+
+.modalRight h1 {
+    font-size: 2em;
+}
+
+
+.findMyRoomLink  {
+    position: absolute;
+    right: 5vw;    
+    padding-top: 300px;
+    font-size: 1.4em;
+   }
+
+
+.checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    
+}
+
+.checkbox label {
+    margin-right: 50px;
+    
+}
+
+.submit {
+    color: #fff;
+}
+
+.submit:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.rent {
+    padding-left: 10px;
+}
+
+span{
+  position:relative;
+  margin-right:-20px;
+  color: black
+}
+
+input[type='number']{
+    height: 40px;
+  padding-left:30px;
+  text-align:left;
+}
+
+.search__icon {
+    padding-right: 10px;
+    height: 27px;
+}
+
+.closeBtn {
+    position: fixed;
+    top: 20px;
+    right: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.closeBtn:hover {
+    transform: scale(1.1);
+}
+
+
+.redirect {
+    /* position: fixed; */
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+@media screen and (max-width: 900px) {
+    
+    .modalContainer  {
+            top: 45%;
+    }
+    
+  }

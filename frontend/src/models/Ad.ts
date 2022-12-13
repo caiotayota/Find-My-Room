@@ -20,7 +20,7 @@ export type Ad = {
     rent: number;
     billsIncluded: string;
     parking: string;
-    owner_occupied: string;
+    ownerOccupied: string;
     petAllowed: string;
     washingMachine: string;
     dryer: string;

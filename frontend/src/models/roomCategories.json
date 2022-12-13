@@ -1,0 +1,5 @@
+[
+    { "roomType": "Single-Room"},
+    {"roomType": "Double-Room"},
+    {"roomType": "Shared-Room"}
+]
