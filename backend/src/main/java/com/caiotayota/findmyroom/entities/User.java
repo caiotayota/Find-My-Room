@@ -2,7 +2,6 @@ package com.caiotayota.findmyroom.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,9 +13,10 @@ import java.util.Date;
 import java.util.List;
 
 @Getter @Setter
-@NoArgsConstructor @AllArgsConstructor
+@AllArgsConstructor
 @Entity @Table(name = "users")
 public class User {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,12 +29,8 @@ public class User {
     @Size(min = 8, message = "Password must have at least 8 characters.")
     private String password;
 
-    @NotBlank
     private String firstName;
-
-    @NotBlank
     private String lastName;
-
     private String dateOfBirth;
     private String nationality;
     private String phoneNo;
@@ -45,6 +41,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles = new ArrayList<>();
 
+    private boolean verifiedEmail;
     private String verificationCode;
     @Temporal(TemporalType.TIMESTAMP)
     private Date verificationCodeSentAt;
@@ -54,5 +51,9 @@ public class User {
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+
+    public User() {
+        this.verifiedEmail = false;
+    }
 }
 

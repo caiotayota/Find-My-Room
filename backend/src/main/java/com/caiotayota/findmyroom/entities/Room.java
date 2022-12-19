@@ -1,8 +1,6 @@
 package com.caiotayota.findmyroom.entities;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -10,14 +8,14 @@ import java.util.Date;
 
 @Entity
 @Table(name = "rooms")
-@Getter
-@Setter
-@NoArgsConstructor
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Builder
 public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_id")
+    @Column(name = "roomId")
     private long id;
 
     private String streetAddress;
@@ -28,8 +26,8 @@ public class Room {
     private boolean carpeted;
 
     @OneToOne
-    @JoinColumn(name = "lessor")
-    private User user;
+    @JoinColumn(name = "roomImage")
+    private RoomImage roomImage;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
