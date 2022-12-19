@@ -26,12 +26,12 @@ public class Ad {
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "lessor")
+    @JoinColumn(name = "user_id")
     private User user;
 
     private BigDecimal rent;
     private boolean billsIncluded;
-    private boolean owner_occupied;
+    private boolean ownerOccupied;
     private boolean parking;
     private boolean petAllowed;
     private boolean washingMachine;

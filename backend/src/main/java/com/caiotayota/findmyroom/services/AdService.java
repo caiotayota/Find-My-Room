@@ -1,18 +1,23 @@
 package com.caiotayota.findmyroom.services;
 
+import com.caiotayota.findmyroom.dto.AdDto;
 import com.caiotayota.findmyroom.entities.Ad;
+import com.caiotayota.findmyroom.entities.Room;
+import com.caiotayota.findmyroom.entities.RoomImage;
 import com.caiotayota.findmyroom.entities.User;
 import com.caiotayota.findmyroom.exceptions.AdNotFoundException;
 import com.caiotayota.findmyroom.exceptions.UserNotAllowedException;
 import com.caiotayota.findmyroom.repositories.AdRepository;
+import com.caiotayota.findmyroom.repositories.RoomImageRepository;
 import com.caiotayota.findmyroom.repositories.RoomRepository;
 import com.caiotayota.findmyroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,12 +27,14 @@ public class AdService {
     private final AdRepository adRepository;
     private final RoomRepository roomRepository;
     private final UserRepository userRepository;
+    private final RoomImageRepository roomImageRepository;
 
     @Autowired
-    public AdService(AdRepository adRepository, RoomRepository roomRepository, UserRepository userRepository) {
+    public AdService(AdRepository adRepository, RoomRepository roomRepository, UserRepository userRepository, RoomImageRepository roomImageRepository) {
         this.adRepository = adRepository;
         this.roomRepository = roomRepository;
         this.userRepository = userRepository;
+        this.roomImageRepository = roomImageRepository;
     }
 
     public Optional<Ad> getAd(long id) {
@@ -35,7 +42,7 @@ public class AdService {
     }
 
     public List<Ad> getAds() {
-        return adRepository.findAll();
+        return adRepository.findAds();
     }
 
     public List<Ad> getAdsByUser(User user) {
@@ -48,14 +55,34 @@ public class AdService {
         return ads != null ? ads : Collections.emptyList();
     }
 
-    public Ad createAd(Ad ad, long roomId) {
+    public Ad createAd(AdDto adDto) {
 
-        if (!roomRepository.findById(roomId).get().getUser().getEmail().equals(getLoggedUser())) {
-            throw new UserNotAllowedException();
-        }
+        Room room = new Room();
+        room.setRoomType(adDto.getRoomType());
+        room.setStreetAddress(adDto.getStreetAddress());
+        room.setEirCode(adDto.getEirCode());
+        room.setEnsuiteBathroom(adDto.isEnsuiteBathroom());
+        room.setHeating(adDto.isHeating());
+        room.setCarpeted(adDto.isCarpeted());
 
-        ad.setRoom(roomRepository.findById(roomId).get());
-        ad.setUser(userRepository.findById(getLoggedUser()).get());
+        Optional<RoomImage> roomImage = roomImageRepository.findById(adDto.getRoomImageId());
+        roomImage.ifPresent(room::setRoomImage);
+        room.setCreatedAt(new Date());
+
+        Ad ad = new Ad();
+        ad.setRoom(roomRepository.save(room));
+        ad.setRent(adDto.getRent());
+        ad.setBillsIncluded(adDto.isBillsIncluded());
+        ad.setOwnerOccupied(adDto.isOwner_occupied());
+        ad.setParking(adDto.isParking());
+        ad.setPetAllowed(adDto.isPetAllowed());
+        ad.setWashingMachine(adDto.isWashingMachine());
+        ad.setDryer(adDto.isDryer());
+        ad.setDishWasher(ad.isDishWasher());
+
+        ad.setUser(userRepository.findUserByEmail(getLoggedUser()).orElseThrow());
+
+        ad.setCreatedAt(new Date());
         return adRepository.save(ad);
     }
 
@@ -68,8 +95,9 @@ public class AdService {
             throw new UserNotAllowedException();
         }
 
-        ad.get().setOwner_occupied(updatedAd.isOwner_occupied());
+        ad.get().setOwnerOccupied(updatedAd.isOwnerOccupied());
         ad.get().setRent(updatedAd.getRent());
+        ad.get().setUpdatedAt(new Date());
         return adRepository.save(ad.get());
     }
 
@@ -84,7 +112,13 @@ public class AdService {
     }
 
     public String getLoggedUser() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return auth.getPrincipal().toString();
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+
     }
 }
