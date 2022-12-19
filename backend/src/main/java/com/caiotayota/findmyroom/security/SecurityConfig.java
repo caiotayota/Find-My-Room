@@ -20,6 +20,7 @@ public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
     private final JwtAuthEntryPoint jwtAuthEntryPoint;
 
+
     @Autowired
     public SecurityConfig(CustomUserDetailsService userDetailsService, JwtAuthEntryPoint jwtAuthEntryPoint) {
         this.userDetailsService = userDetailsService;
@@ -37,8 +38,8 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth/register", "/api/ads", "/h2-console/**", "/api/auth/login").permitAll()
-                .antMatchers("/api/user/**", "/api/users").hasAnyAuthority("USER")
+                .antMatchers("/api/auth/register", "/api/auth/login", "/api/img/**","/api/ads", "/api/user/verify-email", "/h2-console/**").permitAll()
+                .antMatchers("/api/ads/new").hasAnyAuthority("USER")
                 .anyRequest().authenticated()
                 .and()
                 .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
