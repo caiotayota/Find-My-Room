@@ -14,6 +14,7 @@ import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping(value = "/api/rooms", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RoomController {
@@ -40,10 +41,10 @@ public class RoomController {
         return service.getRoomsByAddress(streetAddress);
     }
 
-    @GetMapping(value = "/search/", params = "user")
-    public List<Room> getRoomsByUser(@RequestParam @Valid User user) {
-        return service.getRoomsByUser(user);
-    }
+//    @GetMapping(value = "/search/", params = "user")
+//    public List<Room> getRoomsByUser(@RequestParam @Valid User user) {
+//        return service.getRoomsByUser(user);
+//    }
 
     @PostMapping(path = "/new", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)

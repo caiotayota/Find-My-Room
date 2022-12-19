@@ -1,5 +1,6 @@
 package com.caiotayota.findmyroom.controllers;
 
+import com.caiotayota.findmyroom.dto.AdDto;
 import com.caiotayota.findmyroom.entities.Ad;
 import com.caiotayota.findmyroom.entities.User;
 import com.caiotayota.findmyroom.services.AdService;
@@ -13,8 +14,9 @@ import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin
 @RestController
-@RequestMapping(value = "/api/ads", produces = APPLICATION_JSON_VALUE)
+@RequestMapping("/api/ads")
 public class AdController {
 
     private final AdService service;
@@ -44,10 +46,10 @@ public class AdController {
         return service.getAdsByUser(user);
     }
 
-    @PostMapping(path = "/new", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/new", consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public Ad createAd(@RequestBody @Valid Ad ad, @RequestParam long roomId) {
-        return service.createAd(ad, roomId);
+    public Ad createAd(@RequestBody AdDto adDto) {
+        return service.createAd(adDto);
     }
 
     @PutMapping("/{id}")
