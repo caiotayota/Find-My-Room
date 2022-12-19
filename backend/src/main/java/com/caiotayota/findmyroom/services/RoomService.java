@@ -1,9 +1,7 @@
 package com.caiotayota.findmyroom.services;
 
 import com.caiotayota.findmyroom.entities.Room;
-import com.caiotayota.findmyroom.entities.User;
 import com.caiotayota.findmyroom.exceptions.RoomNotFoundException;
-import com.caiotayota.findmyroom.exceptions.UserNotAllowedException;
 import com.caiotayota.findmyroom.repositories.RoomRepository;
 import com.caiotayota.findmyroom.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,13 +38,7 @@ public class RoomService {
         return rooms != null ? rooms : Collections.emptyList();
     }
 
-    public List<Room> getRoomsByUser(User user) {
-        List<Room> rooms = roomRepository.findByUser(user);
-        return rooms != null ? rooms : Collections.emptyList();
-    }
-
     public Room createRoom(Room room) {
-        room.setUser(userRepository.findById(getLoggedUser()).get());
         return roomRepository.save(room);
     }
 
@@ -55,10 +47,6 @@ public class RoomService {
         Optional<Room> room = roomRepository.findById(id);
 
         if (room.isEmpty()) throw new RoomNotFoundException();
-
-        if (!room.get().getUser().getEmail().equals(getLoggedUser())) {
-            throw new UserNotAllowedException();
-        }
 
         room.get().setStreetAddress(updatedRoom.getStreetAddress());
         room.get().setEirCode(updatedRoom.getEirCode());
@@ -72,10 +60,6 @@ public class RoomService {
     public void deleteRoom(long id) {
         Optional<Room> room = roomRepository.findById(id);
         if (room.isEmpty()) throw new RoomNotFoundException();
-
-        if (!room.get().getUser().getEmail().equals(getLoggedUser())) {
-            throw new UserNotAllowedException();
-        }
         roomRepository.deleteById(id);
     }
 
