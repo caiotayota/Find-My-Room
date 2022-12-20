@@ -8,6 +8,11 @@ export type Ad = {
         ensuiteBathroom: string;
         heating: string;
         carpeted: string;
+        roomImage: {
+            id: number;
+            name: string;
+            type: string;
+        }
     };
     user: {
         id: number;
@@ -26,4 +31,6 @@ export type Ad = {
     dryer: string;
     dishWasher: string;
     createdAt: string;
+    roomImageId: number;
+   
 }

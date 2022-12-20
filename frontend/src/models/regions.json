@@ -1,110 +1,40 @@
 [
-{ "code": "Y14",
-"region": "Arklow"
-},
-{ "code": "A84",
-"region": "Ashbourne"
-},
-{ "code": "H65",
-"region": "Athenry"
-},
-{ "code": "N37",
-"region": "Athlone"
-},
-{ "code": "R14",
-"region": "Athy"
-},
-{ "code": "K32",
-"region": "Balbriggan"
-},
-{ "code": "F26",
-"region": "Ballina"
-},
-{ "code": "H53",
-"region": "Ballinasloe"
-},
-{ "code": "P31",
-"region": "Ballincollig"
-},
-{ "code": "F31",
-"region": "Ballinrobe"
-},
-{ "code": "A41",
-"region": "Ballyboughal"
-},
-{ "code": "F35",
-"region": "Ballyhaunis"
-},
-{ "code": "F56",
-"region": "Ballymote"
-},
-{ "code": "P72",
-"region": "Bandon"
-},
-{ "code": "P75",
-"region": "Bantry"
-},
-{ "code": "H14",
-"region": "Belturbet"
-},
-{ "code": "R42",
-"region": "Birr"
-},
-{ "code": "A94",
-"region": "Blackrock"
-},
-{ "code": "F52",
-"region": "Boyle"
-},
-{ "code": "A98",
-"region": "Bray"
-},
-{ "code": "V23",
-"region": "Caherciveen"
-},
-{ "code": "E21",
-"region": "Cahir"
-},
-{ "code": "R93",
-"region": "Carlow"
-},
-{ "code": "A81",
-"region": "Carrickmacross"
-},
-{ "code": "N41",
-"region": "Carrick-on-shannon"
-},
-{ "code": "E32",
-"region": "Carrick-on-suir"
-},
-{ "code": "P43",
-"region": "Carrigaline"
-},
-{ "code": "E25",
-"region": "Cashel"
-},
-{ "code": "F23",
-"region": "Castlebar"
-},
-{ "code": "A75",
-"region": "Castleblayney"
-},
-{ "code": "F45",
-"region": "Castlerea"
-},
-{ "code": "H12",
-"region": "Cavan"
-},
-{ "code": "P56",
-"region": "Charleville"
-},
-{ "code": "F12",
-"region": "Claremorris"
-},
-{ "code": "H71",
-"region": "Clifden"
-},
-{"code": "P85", "region": "Clonakilty"},
+{"code": "Y14", "region": "Arklow"},
+{"code": "A84","region": "Ashbourne"},
+{"code": "H65", "region": "Athenry"},
+{"code": "N37", "region": "Athlone"},
+{"code": "R14", "region": "Athy"},
+{"code": "K32", "region": "Balbriggan"},
+{"code": "F26", "region": "Ballina"},
+{"code": "H53", "region": "Ballinasloe"},
+{"code": "P31", "region": "Ballincollig"},
+{"code": "F31", "region": "Ballinrobe"},
+{"code": "A41", "region": "Ballyboughal"},
+{"code": "F35", "region": "Ballyhaunis"},
+{"code": "F56", "region": "Ballymote"},
+{"code": "P72", "region": "Bandon"},
+{"code": "P75", "region": "Bantry"},
+{"code": "H14", "region": "Belturbet"},
+{"code": "R42", "region": "Birr"},
+{"code": "A94", "region": "Blackrock"},
+{"code": "F52", "region": "Boyle"},
+{"code": "A98", "region": "Bray"},
+{"code": "V23", "region": "Caherciveen"},
+{"code": "E21", "region": "Cahir"},
+{"code": "R93", "region": "Carlow"},
+{"code": "A81", "region": "Carrickmacross"},
+{"code": "N41", "region": "Carrick-on-shannon"},
+{"code": "E32", "region": "Carrick-on-suir"},
+{"code": "P43", "region": "Carrigaline"},
+{"code": "E25", "region": "Cashel"},
+{"code": "F23", "region": "Castlebar"},
+{"code": "A75", "region": "Castleblayney"},
+{"code": "F45", "region": "Castlerea"},
+{"code": "H12", "region": "Cavan"},
+{"code": "P56", "region": "Charleville"},
+{"code": "F12", "region": "Claremorris"},
+{"code": "H71", "region": "Clifden"},
+{"code": "P85", " region": "Clonakilty"},
 {"code": "H23", "region": "Clones"},
 {"code": "E91", "region": "Clonmel"},
 {"code": "P24", "region": "Cobh"},
