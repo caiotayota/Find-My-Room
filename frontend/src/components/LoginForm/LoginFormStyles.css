@@ -30,6 +30,10 @@
   padding-bottom: 25px;
 }
 
+#logo:hover {
+  transform: scale(1.1);
+}
+
 .form {
     width: 60%;
     
@@ -68,10 +72,11 @@
 
 .form-container a, .form-container a:visited {
   text-decoration: none;
-  color: rgb(0, 0, 0);
+  color: rgb(0, 31, 207);
+  padding-left: 5px;
 }
 .form-container a:hover {
-  color: rgb(0, 31, 207);
+  color: rgb(9, 46, 251);
 }
 
 .input {
@@ -96,4 +101,3 @@ padding: 0.5rem;
   display: inline-block;
   color: #000;
 }
-

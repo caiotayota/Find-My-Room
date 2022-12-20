@@ -1,13 +1,14 @@
+import { useRef, useState, useEffect } from 'react';
 import { AxiosError } from 'axios';
-import { useRef, useState, useEffect, useContext } from 'react';
-import AuthContext from '../../context/AuthProvider';
 import axios from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
+
 import './LoginFormStyles.css';
 
 const LOGIN_URL = '/auth/login';
 
 const Login = () => {
-  // const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const userRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
 
@@ -32,15 +33,18 @@ const Login = () => {
         LOGIN_URL,
         JSON.stringify({ email, password }),
         {
-          headers: { 'Content-Type': 'application/json' },
-          //   withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
-      console.log(JSON.stringify(response?.data));
-      //console.log(JSON.stringify(response));
-      const accessToken = response?.data?.accessToken;
-      const roles = response?.data?.roles;
-      //   setAuth({ email, password, roles, accessToken });
+
+      console.log(response);
+
+      localStorage.setItem('accessToken', response?.data.accessToken);
+      localStorage.setItem('tokenType', response?.data.tokenType);
+      localStorage.setItem('username', response?.data.email);
+
       setEmail('');
       setPassword('');
       setSuccess(true);
@@ -85,7 +89,7 @@ const Login = () => {
               id="username"
               ref={userRef}
               autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
               value={email}
               required
             />
@@ -104,7 +108,9 @@ const Login = () => {
           <p>
             Need an Account? &nbsp;
             <span className="line">
-              <a href="/register">Sign-Up today!</a>
+              <a id="signUp" href="/register">
+                Sign-Up today!
+              </a>
             </span>
           </p>
         </section>
