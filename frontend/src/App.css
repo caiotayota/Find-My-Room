@@ -5,18 +5,7 @@ body {
 
 header {
   min-height: 100vh;
-  /* background: url('./assets/img/cover14.jpeg'); */
   background-size: cover;
-}
-
-section {
-  color: #fff;
-  padding: 1.5em;
-}
-
-p {
-  max-width: 35em;
-  padding: 1em 0;
 }
 
 * {
@@ -24,6 +13,8 @@ p {
   margin: 0;
   padding: 0;
 }
+
+
 
 
 
