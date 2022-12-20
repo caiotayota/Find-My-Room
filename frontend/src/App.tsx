@@ -1,12 +1,11 @@
-// import { useState } from 'react'
 import './App.css';
-import Header from './components/Header/Header';
-import Register from './components/Register/Register';
-import SearchResponse from './components/SearchResponse/SearchResponse';
+import RegisterPage from './pages/RegisterPage';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import Layout from './components/Layout/Layout';
+import RequireAuth from './components/RequireAuth/RequireAuth';
+import EmailVerificationPage from './pages/EmailVerificationPage';
 
 function App() {
   return (
@@ -14,8 +13,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<Register />} />
+          <Route path="register" element={<RegisterPage />} />
           <Route path="/" element={<Home />} />
+          <Route
+            path="/verification-code"
+            element={<EmailVerificationPage />}
+          />
+
+          <Route element={<RequireAuth />}></Route>
+
+          {/* TODO:  <Route path="*" element{<Missing/>} /> */}
         </Route>
       </Routes>
     </>
