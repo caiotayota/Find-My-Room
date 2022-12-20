@@ -1,29 +1,38 @@
-import { Icon, Item, Label } from 'semantic-ui-react';
-import axios from '../../api/axios';
 import { useEffect, useState, useRef } from 'react';
-import { Ad } from '../../models/Ad';
-const AD_URL = '/ads';
-import './SearchRoomsStyles.css';
-
+import { Icon, Item, Label } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMagnifyingGlass,
+  faEnvelope,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faSquareParking,
   faPaw,
   faTemperatureArrowUp,
   faBath,
+  faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-function formatTimestamp(str: string) {
-  return 'Posted at: ' + str.substring(0, 10).split('-').reverse().join('-');
-}
+import axios from '../../api/axios';
+import { Ad } from '../../models/Ad';
+
+import { BASE_URL } from '../../utils/request';
+import getRandomRoom from '../../utils/getRandomRoom';
+import formatTimestamp from '../../utils/formatTimestamp';
+
+import './SearchRoomsStyles.css';
+
+const AD_URL = '/ads';
+const IMG_URL = '/api/img/';
 
 const regex = /[0-9]+/;
 
-function AdItemList() {
+function searchRooms() {
   const [ads, setAds] = useState<Ad[]>([]);
   const [search, setSearch] = useState(false);
   const [query, setQuery] = useState('');
+  const [srcImg, setSrcImg] = useState('');
+  const [authenticated, setAuthenticated] = useState<boolean>();
 
   const adRef = useRef<HTMLDivElement>(null);
 
@@ -46,10 +55,18 @@ function AdItemList() {
     window.addEventListener('scroll', activateSearch);
   });
 
+  useEffect(() => {
+    localStorage.getItem('accessToken') != null
+      ? setAuthenticated(true)
+      : setAuthenticated(false);
+  });
+
   return (
     <>
       <div className={`search ${search && 'search-active'}`}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} className="search__icon" />
+        <a href="#ads">
+          <FontAwesomeIcon icon={faMagnifyingGlass} className="search__icon" />
+        </a>
         <input
           className="search__input"
           type="text"
@@ -74,9 +91,9 @@ function AdItemList() {
           {ads
             .filter(
               (ad) =>
-                ad.room.streetAddress.toLowerCase().includes(query) ||
-                ad.room.eirCode.toLowerCase().includes(query) ||
-                ad.room.roomType.toLowerCase().includes(query)
+                ad.room?.streetAddress.toLowerCase().includes(query) ||
+                ad.room?.eirCode.toLowerCase().includes(query) ||
+                ad.room?.roomType.toLowerCase().includes(query)
             )
             .map((ad) => {
               return (
@@ -84,13 +101,75 @@ function AdItemList() {
                   <Item key={'ad_' + ad.id}>
                     <Item.Image
                       label
-                      src="https://www.hubbleliving.com/images/rooms/dublin-standard-ensuite.jpg"
+                      src={
+                        ad.room?.roomImage?.id != undefined
+                          ? BASE_URL + IMG_URL + ad.room?.roomImage?.id
+                          : getRandomRoom()
+                      }
                     />
-
                     <Item.Content>
                       <Item.Header as="a">
-                        {ad.room.streetAddress.replace(regex, '')}
+                        {ad.room?.streetAddress.replace(regex, '')}
                       </Item.Header>
+                      <a
+                        className={
+                          ad.user.email != localStorage.getItem('username')
+                            ? 'email'
+                            : 'hidden'
+                        }
+                        href={
+                          authenticated ? 'mailto:' + ad.user?.email : '/login'
+                        }
+                      >
+                        <FontAwesomeIcon
+                          icon={faEnvelope}
+                          className="envelopeIcon"
+                        />
+                      </a>
+                      <a
+                        className={
+                          ad.user.email == localStorage.getItem('username')
+                            ? 'delete'
+                            : 'hidden'
+                        }
+                        // onClick={}
+                      >
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          className="trashCan"
+                          onClick={async (e: {
+                            preventDefault: () => void;
+                          }) => {
+                            e.preventDefault();
+
+                            try {
+                              const response = await axios.delete(
+                                AD_URL + '/' + ad.id,
+                                {
+                                  headers: {
+                                    'Content-Type': 'application/json',
+                                    Authorization:
+                                      '' +
+                                      localStorage.getItem('tokenType') +
+                                      localStorage.getItem('accessToken'),
+                                  },
+                                }
+                              );
+                              window.location.reload();
+                            } catch (err: unknown) {
+                              // const error = err as AxiosError;
+                              // if (error?.response?.status === 409) {
+                              //   setErrorMsg('Email is already registred');
+                              //   console.log('taken');
+                              // } else {
+                              //   setErrorMsg('Registration Failed');
+                              //   console.log('failed');
+                              // }
+                              // errorRef.current?.focus();
+                            }
+                          }}
+                        />
+                      </a>
                       <Item.Meta>
                         <span>
                           <Icon name="euro sign" />
@@ -108,9 +187,9 @@ function AdItemList() {
                         {formatTimestamp(ad.createdAt)}
                       </Item.Description>
                       <Item.Extra>
-                        <Label>{ad.room.roomType}</Label>
+                        <Label>{ad.room?.roomType}</Label>
 
-                        {ad.room.ensuiteBathroom ? (
+                        {ad.room?.ensuiteBathroom ? (
                           <Label>
                             <FontAwesomeIcon icon={faBath} />
                             &nbsp;&nbsp;Ensuite Bathroom
@@ -151,7 +230,7 @@ function AdItemList() {
                           <></>
                         )}
 
-                        {ad.room.carpeted ? <Label>Carpeted</Label> : <></>}
+                        {ad.room?.carpeted ? <Label>Carpeted</Label> : <></>}
 
                         {ad.dishWasher ? <Label>Dishwasher</Label> : <></>}
 
@@ -168,4 +247,4 @@ function AdItemList() {
   );
 }
 
-export default AdItemList;
+export default searchRooms;

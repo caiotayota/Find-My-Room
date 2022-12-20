@@ -31,9 +31,23 @@
     left: 250px;
     top: 30px;
     position: fixed;
-    width: 25%;
+    width: 35%;
     height: 40px;
 }
+
+.search-active .search__icon{
+    font-size: 25px;
+    color: #777;
+    margin-left: -10px;
+    padding-top: 2px;
+   transform: scale(0.8);
+   padding-right: 0;
+
+}
+
+.search-active .search__icon:hover{
+    transform: scale(1);
+ }
 
 .search__input{
     flex: 1;
@@ -47,7 +61,37 @@
 .search__icon{
     font-size: 25px;
     color: #777;
-    padding-left: 5px;
+    padding-left: 8px;
+    padding-top: 1.5px;
+    padding-right: 15px;
+   transform: scale(1.3);
+
+}
+
+.search__icon:hover{
+   transform: scale(1.5);
+}
+
+.email {
+    margin-left: 20px;
+}
+
+.delete {
+    margin-left: 20px;
+}
+
+.envelopeIcon {
+    color: rgb(0, 0, 77);
+    height: 20px;
+}
+
+.trashCan {
+    color: rgb(125, 0, 0);
+    height: 20px;
+}
+
+.envelopeIcon:hover {
+    transform: scale(1.2);
 }
 
 @media screen and (max-width: 900px) {
@@ -60,7 +104,7 @@
         left: 250px;
         top: 30px;
         position: fixed;
-        width: 25%;
+        width: 35%;
         height: 40px;
 
         
