@@ -4,11 +4,12 @@ import roomCategories from '../../models/roomCategories.json';
 import axios from '../../api/axios';
 import { AxiosError } from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 import './AdFormStyles.css';
 
 const POST_AD_URL = '/ads/new';
+const IMAGE_UPLOAD_URL = '/img/upload';
 
 function AdForm({ open, onClose }: any) {
   if (!open) return null;
@@ -31,12 +32,12 @@ function AdForm({ open, onClose }: any) {
   const [dryer, setDryer] = useState<boolean>(false);
   const [dishWasher, setDishWasher] = useState<boolean>(false);
 
+  const [roomImage, setRoomImage] = useState('');
+  const [imgUploaded, setImgUploaded] = useState<boolean>(false);
+  const [roomImageId, setRoomImageId] = useState<number>();
+
   const [errorMsg, setErrorMsg] = useState('');
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    userRef.current?.focus();
-  }, []);
 
   useEffect(() => {
     function activateLogo() {
@@ -48,8 +49,41 @@ function AdForm({ open, onClose }: any) {
     window.addEventListener('scroll', activateLogo);
   });
 
+  function timeout(delay: number) {
+    return new Promise((res) => setTimeout(res, delay));
+  }
+
+  function handleImage(e: any) {
+    setRoomImage(e.target.files[0]);
+  }
+  const handleApi = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('image', roomImage);
+
+    try {
+      const imgResponse = await axios
+        .post(IMAGE_UPLOAD_URL, formData)
+        .then((res) => setRoomImageId(res.data));
+      setImgUploaded(true);
+    } catch (err: unknown) {
+      const error = err as AxiosError;
+
+      if (error?.response?.status === 409) {
+        setErrorMsg('Image e');
+        console.log('image er');
+      } else {
+        setErrorMsg('Upload Failed');
+        console.log('upload failed');
+      }
+      errorRef.current?.focus();
+    }
+  };
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+
+    handleApi;
 
     try {
       const response = await axios.post(
@@ -70,22 +104,20 @@ function AdForm({ open, onClose }: any) {
           washingMachine,
           dryer,
           dishWasher,
+          roomImageId,
         }),
         {
-          headers: { 'Content-Type': 'application/json' },
-          // withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization:
+              '' +
+              localStorage.getItem('tokenType') +
+              localStorage.getItem('accessToken'),
+          },
         }
       );
+
       setSuccess(true);
-      console.log(response?.data);
-      // console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
-      // setSuccess(true);
-      // setEmail('');
-      // setPassword('');
-      // setMatchPassword('');
-      // setFirstName('');
-      // setLastName('');
     } catch (err: unknown) {
       const error = err as AxiosError;
 
@@ -151,13 +183,11 @@ function AdForm({ open, onClose }: any) {
               X
             </p>
             <div>
-              <p
-                ref={errorRef}
-                className={errorMsg ? 'error-msg' : 'offscreen'}
-                aria-live="assertive"
-              >
-                {errorMsg}
-              </p>
+              <div className={errorMsg ? 'errorMsg' : 'offscreen'}>
+                <p ref={errorRef} aria-live="assertive">
+                  {errorMsg}
+                </p>
+              </div>
               <h1>Post a room</h1>
               <form className="adForm" onSubmit={handleSubmit}>
                 <label htmlFor="streetAddress">Street Address:</label>
@@ -230,6 +260,7 @@ function AdForm({ open, onClose }: any) {
                     required
                   />
                 </label>
+                <hr />
 
                 <div className="checkbox">
                   <label htmlFor="billsIncluded">
@@ -317,7 +348,43 @@ function AdForm({ open, onClose }: any) {
                     &nbsp; Dishwasher
                   </label>
                 </div>
-                <button className="submit">Submit</button>
+                <hr />
+                <label htmlFor="roomImage">Select a room photo:</label>
+                <input
+                  className="roomInput"
+                  type="file"
+                  ref={userRef}
+                  onChange={handleImage}
+                  required
+                ></input>
+                <span className="uploadImage">
+                  <button
+                    className="uploadImage"
+                    onClick={handleApi}
+                    onBlurCapture={() => {
+                      setErrorMsg('');
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faUpload} className="uploadIcon" />
+                    Upload Image
+                  </button>
+                  {imgUploaded ? (
+                    <div className="successMsg">
+                      <p>The image was uploaded succefully</p>
+                    </div>
+                  ) : (
+                    <div className="failMsg">
+                      <p> Please, upload a room photo!</p>
+                    </div>
+                  )}
+                </span>
+
+                <button
+                  className="submit"
+                  disabled={!imgUploaded ? true : false}
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </div>

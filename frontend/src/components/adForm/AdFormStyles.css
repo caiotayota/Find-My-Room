@@ -14,7 +14,7 @@
 
 .modalContainer {
     padding: 0 30px;
-    max-width: 70%;
+    max-width: 50%;
     width: 100%;
     max-height: 75%;
     height: 100%;
@@ -45,11 +45,44 @@
 
 .success {
  padding: 50px 40px;
+ 
 }
 
 .modalRight h1 {
     font-size: 2em;
 }
+
+#streetAddress {
+    min-width: 100px;
+}
+
+#eirCode {
+    max-width: 1000px;
+    min-width: 100px;
+}
+
+#region {
+    /* max-width: 1000px; */
+    max-width: 1000px;
+    width: 100%;
+    min-width: 100px;
+
+}
+
+#roomCategory {
+    max-width: 1000px;
+    width: 100%;
+    min-width: 100px;
+}
+
+#rent {
+    max-width: 1000px;
+    width: 101%;
+    min-width: 100px;
+    height: 33px;
+}
+
+
 
 
 .findMyRoomLink  {
@@ -74,9 +107,75 @@
     
 }
 
+.uploadImage {
+    color: #fff;
+    
+}
+
+.successMsg{
+    color: green;
+    background-color: lightgray;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+
+.successMsg p {
+    font-size: 16px;
+}
+
+.failMsg{
+    color: red;
+    background-color: rgb(255, 192, 192);
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.failMsg p{
+    font-size: 16px;
+}
+
+.errorMsg {
+    margin-top: 30px;
+    
+  }
+
+  .errorMsg p{
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 2%;
+    
+    
+  }
+
+  
+.uploadIcon {
+    padding-right: 10px;
+
+}
+
 .submit {
     color: #fff;
 }
+
+.submit:disabled {
+    color: rgb(196, 194, 194);
+}
+
+.submit:disabled:hover {
+    color: rgb(196, 194, 194);
+    background-color: transparent;
+    cursor: auto;
+}
+
+
 
 .submit:hover {
     color: #fff;
@@ -85,6 +184,7 @@
 
 .rent {
     padding-left: 10px;
+    padding-bottom: 30px;
 }
 
 span{
@@ -124,11 +224,27 @@ input[type='number']{
     flex-direction: row-reverse;
 }
 
+.roomInput {
+    padding: 20px;
+    font-size: 18px;
+    color: rgb(231, 9, 9);
+}
 
-@media screen and (max-width: 900px) {
+
+@media screen and (max-width: 800px) {
     
     .modalContainer  {
             top: 45%;
+            max-width: 100%;
+    }
+    
+  }
+
+  @media screen and (max-width: 1000px) {
+    
+    .modalContainer  {
+            top: 45%;
+            max-width: 75%;
     }
     
   }
