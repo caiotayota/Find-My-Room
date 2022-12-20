@@ -53,7 +53,7 @@ public class AuthService {
 
         List<Role> roles = userRepository.findUserByEmail(loginDto.getEmail()).get().getRoles();
 
-        return new ResponseEntity<>(new AuthResponseDto(token, roles), HttpStatus.OK);
+        return new ResponseEntity<>(new AuthResponseDto(loginDto.getEmail(), token, roles), HttpStatus.OK);
     }
 
     public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
@@ -76,8 +76,7 @@ public class AuthService {
         user.setCreatedAt(new Date());
         userRepository.save(user);
 
-        String verificationCodeMsg = String.format("Dear %s,%n%n" +
-                "The verification code to complete your registration on Find My Room platform is: %s", user.getFirstName(), verificationCode);
+        String verificationCodeMsg = String.format("http://localhost:5173/verification-code?username=%s&code=%s", user.getEmail(), verificationCode);
 
         Map<String, Object> propertiesMap = new HashMap<>();
         propertiesMap.put("name", user.getFirstName());
