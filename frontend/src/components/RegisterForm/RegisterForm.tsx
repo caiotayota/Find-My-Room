@@ -6,9 +6,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from '../../api/axios';
+import { AxiosError } from 'axios';
 
 import './RegisterFormStyles.css';
-import { AxiosError } from 'axios';
 
 const USER_REGEX = /.+@.+\..+/;
 const PASSWORD_REGEX =
@@ -16,7 +16,7 @@ const PASSWORD_REGEX =
 const REGISTER_URL = '/auth/register';
 const VERIFY_EMAIL_URL = '/user/verify-email';
 
-const Register = () => {
+const RegisterForm = () => {
   const userRef = useRef<HTMLInputElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
 
@@ -61,23 +61,17 @@ const Register = () => {
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    console.log(email, password);
-    // setSuccess(true);
-
     try {
       const response = await axios.post(
         REGISTER_URL,
         JSON.stringify({ email, password, firstName, lastName }),
         {
           headers: { 'Content-Type': 'application/json' },
-          // withCredentials: true,
         }
       );
-      console.log(response?.data);
-      // console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
+
       setSuccess(true);
-      // setEmail('');
+      setEmail('');
       setPassword('');
       setMatchPassword('');
       setFirstName('');
@@ -107,12 +101,9 @@ const Register = () => {
         JSON.stringify({ email, verificationCode }),
         {
           headers: { 'Content-Type': 'application/json' },
-          // withCredentials: true,
         }
       );
-      console.log(response?.data);
-      // console.log(response?.accessToken);
-      console.log(JSON.stringify(response));
+
       setEmailConfirmed(true);
       setEmail('');
       setVerificationCode('');
@@ -226,7 +217,7 @@ const Register = () => {
               id="email"
               ref={userRef}
               autoComplete="off"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value.toLowerCase())}
               required
               aria-invalid={validEmail ? false : true}
               aria-describedby="uid-note"
@@ -342,4 +333,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterForm;
