@@ -15,6 +15,7 @@ import {
 
 import axios from '../../api/axios';
 import { Ad } from '../../models/Ad';
+import { AxiosError } from 'axios';
 
 import { BASE_URL } from '../../utils/request';
 import getRandomRoom from '../../utils/getRandomRoom';
@@ -111,6 +112,7 @@ function searchRooms() {
                       <Item.Header as="a">
                         {ad.room?.streetAddress.replace(regex, '')}
                       </Item.Header>
+
                       <a
                         className={
                           ad.user.email != localStorage.getItem('username')
@@ -126,6 +128,7 @@ function searchRooms() {
                           className="envelopeIcon"
                         />
                       </a>
+
                       <a
                         className={
                           ad.user.email == localStorage.getItem('username')
@@ -157,15 +160,13 @@ function searchRooms() {
                               );
                               window.location.reload();
                             } catch (err: unknown) {
-                              // const error = err as AxiosError;
-                              // if (error?.response?.status === 409) {
-                              //   setErrorMsg('Email is already registred');
-                              //   console.log('taken');
-                              // } else {
-                              //   setErrorMsg('Registration Failed');
-                              //   console.log('failed');
-                              // }
-                              // errorRef.current?.focus();
+                              const error = err as AxiosError;
+                              if (error?.response?.status === 401) {
+                                localStorage.removeItem('accessToken');
+                                localStorage.removeItem('tokenType');
+                                localStorage.removeItem('username');
+                                window.location.href = '/login';
+                              }
                             }
                           }}
                         />

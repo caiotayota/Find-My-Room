@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import './MenuStyles.css';
 import RentRoomScheme from '../RentRoomScheme/RentRoomScheme';
-import AdForm from '../adForm/AdForm';
+import AdForm from '../AdForm/AdForm';
+import axios from '../../api/axios';
 
 function Menu({ menuOpen }: any) {
   const [openModal, setOpenModal] = useState(false);
@@ -13,6 +14,20 @@ function Menu({ menuOpen }: any) {
     localStorage.getItem('accessToken') != null
       ? setAuthenticated(true)
       : setAuthenticated(false);
+
+    axios.interceptors.response.use(
+      (response) => {
+        return response;
+      },
+      (error) => {
+        if (error.response.status == 401) {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('tokenType');
+          localStorage.removeItem('username');
+          window.location.href = '/login';
+        }
+      }
+    );
   });
 
   return (
