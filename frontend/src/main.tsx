@@ -6,14 +6,16 @@ import { AuthProvider } from './context/AuthProvider';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
+window.React = React;
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Router>
-      {/* <AuthProvider> */}
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
-      {/* </AuthProvider> */}
+      <AuthProvider>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   </React.StrictMode>
 );
