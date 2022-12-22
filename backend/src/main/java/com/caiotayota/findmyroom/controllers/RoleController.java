@@ -9,7 +9,7 @@ import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://findmyroom.ie"})
 @RestController
 @RequestMapping(value = "/api/role")
 public class RoleController {

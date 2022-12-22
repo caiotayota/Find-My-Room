@@ -15,7 +15,7 @@ import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:5173", "https://findmyroom.ie"})
 @RestController
 @RequestMapping(value = "/api/user", produces = APPLICATION_JSON_VALUE)
 public class UserController {

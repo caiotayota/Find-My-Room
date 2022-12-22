@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://findmyroom.ie"})
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
