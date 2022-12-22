@@ -196,6 +196,32 @@
             </tr>
             <!-- end copy -->
 
+            <!-- start copy -->
+            <tr
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <td
+                align="left"
+                bgcolor="#ffffff"
+                style="
+                  padding: 24px;
+                  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+                  line-height: 24px;
+                "
+              >
+                <p id="verificationCode" style="font-size: 20px">
+                  Verification Code:
+                </p>
+                <p id="code" style="font-size: 25px">${verificationCode}</p>
+                <br />
+              </td>
+            </tr>
+            <!-- end copy -->
+
             <!-- start button -->
             <tr>
               <td align="left" bgcolor="#ffffff">
@@ -210,7 +236,7 @@
                             style="border-radius: 6px"
                           >
                             <a
-                              href="${message}"
+                              href="${url}"
                               target="_blank"
                               style="
                                 display: inline-block;
@@ -251,13 +277,13 @@
                   your browser:
                 </p>
                 <p style="margin: 0">
-                  <a href="${message}" target="_blank">${message}</a>
+                  <a href="${url}" target="_blank">${url}</a>
                 </p>
               </td>
             </tr>
             <!-- end copy -->
 
-            <!-- start copy -->
+            <!-- start signature -->
             <tr>
               <td
                 align="left"
@@ -276,7 +302,7 @@
                 </p>
               </td>
             </tr>
-            <!-- end copy -->
+            <!-- end signature -->
           </table>
         </td>
       </tr>

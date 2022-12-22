@@ -76,11 +76,13 @@ public class AuthService {
         user.setCreatedAt(new Date());
         userRepository.save(user);
 
-        String verificationCodeMsg = String.format("http://localhost:5173/verification-code?username=%s&code=%s", user.getEmail(), verificationCode);
+        String verificationCodeUrl = String.format("https://findmyroom.ie/verification-code?username=%s&code=%s", user.getEmail(), verificationCode);
 
         Map<String, Object> propertiesMap = new HashMap<>();
         propertiesMap.put("name", user.getFirstName());
-        propertiesMap.put("message", verificationCodeMsg);
+        propertiesMap.put("url", verificationCodeUrl);
+        propertiesMap.put("verificationCode", verificationCode);
+
             emailService.sendEmailTemplate(user.getEmail(), "Register on Find My Room", propertiesMap);
 
         log.info("User {} saved on data base", user.getEmail());
