@@ -1,111 +1,100 @@
 ul {
-    list-style: none;
-  }
-  
-  .navbar {
-    width: 100%;
-    padding: 1.5em;
-    color: #fff;
-    transition: 0.3s ease-in-out;
-    z-index: 2;
-    position: fixed;
-    -webkit-text-stroke: 0.15px black;
-    font-size: 20px;
-  }
-  
-  
-  .navbar a {
-    text-decoration: none;
-    color: #fff;
-    transition: 0.3s
-  }
+  list-style: none;
+}
 
-  .navbar button {
-    background-color: transparent;
-    margin-top: 0;
-  }
-  
-  .navbar button:hover {
-    background-color: rgb(255, 255, 255);
-    color: #000000;
-  }
+.navbar {
+  width: 100%;
+  padding: 1.5em;
+  color: #fff;
+  transition: 0.3s ease-in-out;
+  z-index: 2;
+  position: fixed;
+  -webkit-text-stroke: 0.15px black;
+  font-size: 20px;
+}
 
-  .navbar a:hover {
-    color: #b2b2b2;
-  }
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  transition: 0.3s;
+}
 
-  .navbar button a:hover {
-    color: #000000;
-  }
-   
-  .menu {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 2em;
-    transition: 0.4s ease-in-out;
-  }
-  
-  .logo {
-    position: absolute;
-    left: 40px;
-    top: 20px;
-    content: url(../../assets/img/logo-white.png);
-    
-   }
+.navbar button {
+  background-color: transparent;
+  margin-top: 0;
+}
 
-   .logo:hover{
-    transform: scale(1.1);
-   }
+.navbar button:hover {
+  background-color: rgb(255, 255, 255);
+  color: #000000;
+}
 
-   .logo-active {
-    content: url(../../assets/img/logo-white.png);
+.navbar a:hover {
+  color: #b2b2b2;
+}
 
-   }
+.navbar button a:hover {
+  color: #000000;
+}
 
+.menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2em;
+  transition: 0.4s ease-in-out;
+}
+
+.logo {
+  position: absolute;
+  left: 40px;
+  top: 20px;
+  content: url(../../assets/img/logo-white.png);
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.menu-btn {
+  position: absolute;
+  right: 50px;
+  cursor: pointer;
+  font-size: 2em;
+  display: none;
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  color: #b2b2b2;
+}
+
+/*Dynamic class*/
+.navbar-active {
+  position: fixed;
+  background: #111;
+  height: 100px;
+}
+
+@media screen and (max-width: 800px) {
   .menu-btn {
+    display: block;
+  }
+
+  .menu {
     position: absolute;
-    right: 50px;
-    cursor: pointer;
-    font-size: 2em;
-    display: none;
-    transition: 0.3s;
+    top: 4.7em;
+    left: 0;
+    width: 100%;
+    height: 0em;
+    background: #222;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: hidden;
   }
-  
-  .menu-btn:hover {
-    color: #b2b2b2;
-  }
-  
-  
+
   /*Dynamic class*/
-  .navbar-active {
-    position: fixed;
-    background: #111;
-    height: 100px;
+  .navbar .menu-open {
+    height: 22em;
   }
-  
-  
-  @media screen and (max-width: 900px) {
-    .menu-btn {
-      display: block;
-    }
-  
-    .menu {
-      position: absolute;
-      top: 4.7em;
-      left: 0;
-      width: 100%;
-      height: 0em;
-      background: #222;
-      flex-direction: column;
-      justify-content: center;
-      overflow-y: hidden;
-    }
-  
-    /*Dynamic class*/
-    .navbar .menu-open {
-      height: 18em;
-  
-    }
-  
-  }
+}

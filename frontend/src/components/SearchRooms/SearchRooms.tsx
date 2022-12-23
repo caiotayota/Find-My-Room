@@ -21,6 +21,8 @@ import { BASE_URL } from '../../utils/request';
 import getRandomRoom from '../../utils/getRandomRoom';
 import formatTimestamp from '../../utils/formatTimestamp';
 
+import { hideSearchBar } from '../Menu/Menu';
+
 import './SearchRoomsStyles.css';
 
 const AD_URL = '/ads';
@@ -64,7 +66,11 @@ function searchRooms() {
 
   return (
     <>
-      <div className={`search ${search && 'search-active'}`}>
+      <div
+        className={
+          hideSearchBar ? 'hidden' : `search ${search && 'search-active'}`
+        }
+      >
         <a href="#ads">
           <FontAwesomeIcon icon={faMagnifyingGlass} className="search__icon" />
         </a>

@@ -4,6 +4,8 @@ import RentRoomScheme from '../RentRoomScheme/RentRoomScheme';
 import AdForm from '../AdForm/AdForm';
 import axios from '../../api/axios';
 
+export let hideSearchBar = false;
+
 function Menu({ menuOpen }: any) {
   const [openModal, setOpenModal] = useState(false);
   const [openModal2, setOpenModal2] = useState(false);
@@ -30,10 +32,23 @@ function Menu({ menuOpen }: any) {
     );
   });
 
+  useEffect(() => {
+    if (openModal || openModal2) {
+      hideSearchBar = true;
+    } else {
+      hideSearchBar = false;
+    }
+  });
+
   return (
     <>
       <ul className={`menu ${menuOpen && 'menu-open'}`}>
-        <a key="rent-scheme" href="#ads" onClick={() => setOpenModal(true)}>
+        <a
+          key="rent-scheme"
+          id={menuOpen ? '' : 'rentRoomScheme'}
+          href="#ads"
+          onClick={() => setOpenModal(true)}
+        >
           Rent-a-Room Scheme
         </a>
         <li key="post-add">
@@ -50,7 +65,7 @@ function Menu({ menuOpen }: any) {
             Post a Room
           </a>
         </li>
-        <li key="find" className="ads">
+        <li key="find" className="hidden">
           <a href="#ads">Find my Room</a>
         </li>
         <li key="login" className={authenticated ? 'hidden' : ''}>

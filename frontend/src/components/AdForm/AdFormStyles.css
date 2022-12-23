@@ -1,250 +1,223 @@
 .overlay2 {
-    background-color: rgba(0,0,0,0.5);
-    background-image: url('../../assets/img/cover-post.jpg');
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    top: 100px;
-    left: 0;
-    position: absolute;
-    object-fit: cover;
-    opacity: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url('../../assets/img/cover-post.jpg');
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  top: 100px;
+  left: 0;
+  position: absolute;
+  object-fit: cover;
+  opacity: 1;
 }
 
 .modalContainer {
-    padding: 0 30px;
-    max-width: 50%;
-    width: 100%;
-    max-height: 75%;
-    height: 100%;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    background-color: rgba(0,0,0,0.7);
-    box-shadow: 0 0 18px 0 #fff;
-    overflow-y: scroll;
-    margin-top: 10%;
-    
+  padding: 0 30px;
+  max-width: 50%;
+  width: 100%;
+  max-height: 75%;
+  height: 100%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 18px 0 #fff;
+  overflow-y: scroll;
+  margin-top: 10%;
 }
 
 .adForm {
-    display: flex;
+  display: flex;
 }
 
 .adForm select {
-    height: 33px;
+  height: 33px;
 }
 
 .dropdown {
-    height: 40px;
-
+  height: 40px;
 }
 
 .success {
- padding: 50px 40px;
- 
+  padding: 50px 40px;
 }
 
 .modalRight h1 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 #streetAddress {
-    min-width: 100px;
+  min-width: 100px;
 }
 
 #eirCode {
-    max-width: 1000px;
-    min-width: 100px;
+  max-width: 1000px;
+  min-width: 100px;
 }
 
 #region {
-    /* max-width: 1000px; */
-    max-width: 1000px;
-    width: 100%;
-    min-width: 100px;
-
+  /* max-width: 1000px; */
+  max-width: 1000px;
+  width: 100%;
+  min-width: 100px;
 }
 
 #roomCategory {
-    max-width: 1000px;
-    width: 100%;
-    min-width: 100px;
+  max-width: 1000px;
+  width: 100%;
+  min-width: 100px;
 }
 
 #rent {
-    max-width: 1000px;
-    width: 101%;
-    min-width: 100px;
-    height: 33px;
+  max-width: 1000px;
+  width: 101%;
+  min-width: 100px;
+  height: 33px;
 }
 
-
-
-
-.findMyRoomLink  {
-    position: absolute;
-    right: 5vw;    
-    padding-top: 300px;
-    font-size: 1.4em;
-   }
-
+.findMyRoomLink {
+  position: absolute;
+  right: 5vw;
+  padding-top: 300px;
+  font-size: 1.4em;
+}
 
 .checkbox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 20px;
-    
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
 }
 
 .checkbox label {
-    margin-right: 50px;
-    
+  margin-right: 50px;
 }
 
 .uploadImage {
-    color: #fff;
-    
+  color: #fff;
 }
 
-.successMsg{
-    color: green;
-    background-color: lightgray;
-    border-radius: 5px;
-    padding: 8px 15px;
-    margin-bottom: 30px;
-    margin-top: 10px;
-    margin-right: 20px;
+.successMsg {
+  color: green;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-right: 20px;
 }
 
 .successMsg p {
-    font-size: 16px;
+  font-size: 16px;
 }
 
-.failMsg{
-    color: red;
-    background-color: rgb(255, 192, 192);
-    border-radius: 5px;
-    padding: 8px 15px;
-    margin-bottom: 30px;
-    margin-top: 10px;
+.failMsg {
+  color: red;
+  background-color: rgb(255, 192, 192);
+  border-radius: 5px;
+  padding: 8px 15px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
-.failMsg p{
-    font-size: 16px;
+.failMsg p {
+  font-size: 16px;
 }
 
 .errorMsg {
-    margin-top: 30px;
-    
-  }
+  margin-top: 30px;
+}
 
-  .errorMsg p{
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-    border-radius: 2%;
-    
-    
-  }
+.errorMsg p {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 2%;
+}
 
-  
 .uploadIcon {
-    padding-right: 10px;
-
+  padding-right: 10px;
 }
 
 .submit {
-    color: #fff;
+  color: #fff;
 }
 
 .submit:disabled {
-    color: rgb(196, 194, 194);
+  color: rgb(196, 194, 194);
 }
 
 .submit:disabled:hover {
-    color: rgb(196, 194, 194);
-    background-color: transparent;
-    cursor: auto;
+  color: rgb(196, 194, 194);
+  background-color: transparent;
+  cursor: auto;
 }
 
-
-
 .submit:hover {
-    color: #fff;
-    cursor: pointer;
+  color: #fff;
+  cursor: pointer;
 }
 
 .rent {
-    padding-left: 10px;
-    padding-bottom: 30px;
+  padding-left: 10px;
+  padding-bottom: 30px;
 }
 
-span{
-  position:relative;
-  margin-right:-20px;
-  color: black
+span {
+  position: relative;
+  margin-right: -20px;
+  color: black;
 }
 
-input[type='number']{
-    height: 40px;
-  padding-left:30px;
-  text-align:left;
+input[type='number'] {
+  height: 40px;
+  padding-left: 30px;
+  text-align: left;
 }
 
 .search__icon {
-    padding-right: 10px;
-    height: 27px;
+  padding-right: 10px;
+  height: 27px;
 }
 
 .closeBtn {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .closeBtn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-
 .redirect {
-    /* position: fixed; */
-    display: flex;
-    flex-direction: row-reverse;
+  /* position: fixed; */
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .roomInput {
-    padding: 20px;
-    font-size: 18px;
-    color: rgb(231, 9, 9);
+  padding: 20px;
+  font-size: 18px;
+  color: rgb(231, 9, 9);
 }
 
-
 @media screen and (max-width: 800px) {
-    
-    .modalContainer  {
-            top: 45%;
-            max-width: 100%;
-    }
-    
+  .modalContainer {
+    top: 50%;
+    max-width: 100%;
   }
 
-  @media screen and (max-width: 1000px) {
-    
-    .modalContainer  {
-            top: 45%;
-            max-width: 75%;
-    }
-    
+  .overlay2 {
+    width: 100vw;
   }
+}

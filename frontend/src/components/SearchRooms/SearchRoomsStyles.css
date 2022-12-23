@@ -1,112 +1,125 @@
 .ad-container {
-    min-height: 90vh;
-    margin-left: 50px;
+  min-height: 90vh;
+  margin-left: 50px;
 }
 
 #ads {
-    height: 120px;
+  height: 50px;
 }
 
 .rent {
-    size: 20px;
-    text-size-adjust: 50px;
+  size: 20px;
+  text-size-adjust: 50px;
 }
 
-.search{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 70%;
-    background-color: white;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    padding: 15px;
+.search {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 70%;
+  background-color: white;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 15px;
 }
 
-.search-active{
-    transform: translate(0, 0);
-    left: 250px;
-    top: 30px;
-    position: fixed;
-    width: 35%;
-    height: 40px;
+.search-active {
+  transform: translate(0, 0);
+  left: 250px;
+  top: 30px;
+  position: fixed;
+  width: 35%;
+  height: 40px;
 }
 
-.search-active .search__icon{
-    font-size: 25px;
-    color: #777;
-    margin-left: -10px;
-    padding-top: 2px;
-   transform: scale(0.8);
-   padding-right: 0;
-
+.search-active .search__icon {
+  font-size: 25px;
+  color: #777;
+  margin-left: -10px;
+  padding-top: 2px;
+  transform: scale(0.8);
+  padding-right: 0;
 }
 
-.search-active .search__icon:hover{
-    transform: scale(1);
- }
-
-.search__input{
-    flex: 1;
-    border: none;
-    outline: none;
-    padding-left: 20px;
-    font-size: 25px;
-    overflow: hidden;
+.search-active .search__icon:hover {
+  transform: scale(1);
 }
 
-.search__icon{
-    font-size: 25px;
-    color: #777;
-    padding-left: 8px;
-    padding-top: 1.5px;
-    padding-right: 15px;
-   transform: scale(1.3);
-
+.search__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+  font-size: 25px;
+  overflow: hidden;
 }
 
-.search__icon:hover{
-   transform: scale(1.5);
+.search__icon {
+  font-size: 25px;
+  color: #777;
+  padding-left: 8px;
+  padding-top: 1.5px;
+  padding-right: 15px;
+  transform: scale(1.3);
+}
+
+.search__icon:hover {
+  transform: scale(1.5);
 }
 
 .email {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .delete {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .envelopeIcon {
-    color: rgb(0, 0, 77);
-    height: 20px;
+  color: rgb(0, 0, 77);
+  height: 20px;
 }
 
 .trashCan {
-    color: rgb(125, 0, 0);
-    height: 20px;
+  color: rgb(125, 0, 0);
+  height: 20px;
 }
 
 .envelopeIcon:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
-@media screen and (max-width: 900px) {
-    .search {
-        top: 80%;
-    }    
+.hidden {
+  display: none;
+}
 
-    .search-active{
-        transform: translate(0, 0);
-        left: 250px;
-        top: 30px;
-        position: fixed;
-        width: 35%;
-        height: 40px;
-
-        
-    }
+@media screen and (max-width: 800px) {
+  .search {
+    top: 80%;
   }
+
+  .search-active {
+    left: 0px;
+    top: 100px;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+  }
+
+  #ads {
+    height: 50px;
+  }
+
+  .ad-container {
+    min-height: 90vh;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .hidden {
+    display: none;
+  }
+}

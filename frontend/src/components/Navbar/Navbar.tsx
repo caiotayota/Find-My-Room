@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import Menu from '../Menu/Menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import './NavbarStyles.css';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [nav, setNav] = useState(false);
-  const [logo, setLogo] = useState(false);
 
   useEffect(() => {
     function activateNav() {
@@ -23,15 +22,13 @@ function Navbar() {
   });
 
   useEffect(() => {
-    function activateLogo() {
+    function closeMenu() {
       let scrollPosition = window.pageYOffset;
       if (scrollPosition > 200) {
-        setLogo(true);
-      } else if (scrollPosition < 10) {
-        setLogo(false);
+        setMenuOpen(false);
       }
     }
-    window.addEventListener('scroll', activateLogo);
+    window.addEventListener('scroll', closeMenu);
   });
 
   const menuToggle = () => {
@@ -43,11 +40,14 @@ function Navbar() {
       <div className={`navbar ${nav && 'navbar-active'}`}>
         <div>
           <a href="#">
-            <img className={`logo ${logo && 'logo-active'}`} height="65" />
+            <img className="logo" height="65" />
           </a>
           <Menu menuOpen={menuOpen} />
           <div className="menu-btn">
-            <FontAwesomeIcon icon={faBars} onClick={menuToggle} />
+            <FontAwesomeIcon
+              icon={menuOpen ? faXmark : faBars}
+              onClick={menuToggle}
+            />
           </div>
         </div>
       </div>
