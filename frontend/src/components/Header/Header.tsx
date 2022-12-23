@@ -7,10 +7,7 @@ function Header() {
   return (
     <>
       <Navbar />
-      <div
-        className="moving-clouds"
-        style={{ backgroundImage: `url(${cover})` }}
-      ></div>
+      <div className="moving-clouds"></div>
     </>
   );
 }
