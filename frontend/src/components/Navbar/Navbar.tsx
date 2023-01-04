@@ -39,8 +39,8 @@ function Navbar() {
     <>
       <div className={`navbar ${nav && 'navbar-active'}`}>
         <div>
-          <a href="#">
-            <img className="logo" height="65" />
+          <a href="#" aria-label="Homepage">
+            <img className="logo" height="65" alt="Logo" />
           </a>
           <Menu menuOpen={menuOpen} />
           <div className="menu-btn">

@@ -1,10 +1,11 @@
-import logo from '../assets/img/logo-black.jpg';
+import logo from '../assets/img/logo-black.webp';
 import getRandomDoor from '../utils/getRandomDoor';
-import '../components/RegisterForm/RegisterFormStyles.css';
 import { useRef, useState, useEffect } from 'react';
 import axios from '../api/axios';
 
 import { AxiosError } from 'axios';
+
+import '../components/RegisterForm/RegisterFormStyles.css';
 
 const VERIFY_EMAIL_URL = '/user/verify-email';
 export let emailConfirmed = false;
@@ -60,11 +61,11 @@ function EmailVerificationPage() {
 
   return (
     <div className="img-container">
-      <img className="left" src={getRandomDoor()} alt="" />
+      <img className="left" src={getRandomDoor()} alt="Random Door" />
 
       <div className="right">
         <a href="/">
-          <img id="logo" src={logo}></img>
+          <img id="logo" src={logo} alt="logo"></img>
         </a>
         <div
           className="form"

@@ -1,15 +1,15 @@
-import room01 from '../assets/img/rooms/room01.jpg';
-import room02 from '../assets/img/rooms/room02.jpg';
-import room03 from '../assets/img/rooms/room03.jpg';
-import room04 from '../assets/img/rooms/room04.jpg';
-import room05 from '../assets/img/rooms/room05.jpeg';
-import room06 from '../assets/img/rooms/room06.jpeg';
-import room07 from '../assets/img/rooms/room07.jpeg';
-import room08 from '../assets/img/rooms/room08.jpeg';
-import room09 from '../assets/img/rooms/room09.jpeg';
-import room10 from '../assets/img/rooms/room10.jpg';
-import room11 from '../assets/img/rooms/room11.jpg';
-import room12 from '../assets/img/rooms/room12.jpg';
+import room01 from '../assets/img/rooms/room01_small.webp';
+import room02 from '../assets/img/rooms/room02_small.webp';
+import room03 from '../assets/img/rooms/room03_small.webp';
+import room04 from '../assets/img/rooms/room04_small.webp';
+import room05 from '../assets/img/rooms/room05_small.webp';
+import room06 from '../assets/img/rooms/room06_small.webp';
+import room07 from '../assets/img/rooms/room07_small.webp';
+import room08 from '../assets/img/rooms/room08_small.webp';
+import room09 from '../assets/img/rooms/room09_small.webp';
+import room10 from '../assets/img/rooms/room10_small.webp';
+import room11 from '../assets/img/rooms/room11_small.webp';
+import room12 from '../assets/img/rooms/room12_small.webp';
 
 const rooms = [
   room01,

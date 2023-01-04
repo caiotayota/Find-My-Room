@@ -8,11 +8,11 @@
   -webkit-animation: cloudLoop 80s linear infinite;
   animation: cloudLoop 80s linear infinite;
   min-height: 100vh;
-  opacity: 0.2;
-  background-image: url('../../assets/img/cover-home.jpg');
+  opacity: 0.3;
+  background-image: url('../../assets/img/cover-home.webp');
 }
 
-.search{
+.search {
   position: fixed;
 }
 
@@ -39,20 +39,18 @@
     -webkit-animation: cloudLoop 0s linear infinite;
     animation: cloudLoop 0s linear infinite;
     min-height: 100vh;
-    opacity: 0.2;
-    background-image: url('../../assets/img/cover-home-mobile.jpg');
-    
+    opacity: 0.3;
+    background-image: url('../../assets/img/cover-home-mobile.webp');
   }
 
   @keyframes cloudLoop {
-  0% {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      -webkit-transform: translate3d(-90%, 0, 0);
+      transform: translate3d(-90%, 0, 0);
+    }
   }
-  100% {
-    -webkit-transform: translate3d(-90%, 0, 0);
-    transform: translate3d(-90%, 0, 0);
-  }
-}
-
 }

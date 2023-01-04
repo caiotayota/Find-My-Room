@@ -1,5 +1,3 @@
-import cover from '../../assets/img/cover-home.jpg';
-
 import './HeaderStyles.css';
 import Navbar from '../Navbar/Navbar';
 

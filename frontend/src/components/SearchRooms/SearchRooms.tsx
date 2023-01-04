@@ -23,6 +23,8 @@ import formatTimestamp from '../../utils/formatTimestamp';
 
 import { hideSearchBar } from '../Menu/Menu';
 
+import ImageModal from '../ImageModal/ImageModal';
+
 import './SearchRoomsStyles.css';
 
 const AD_URL = '/ads';
@@ -38,6 +40,8 @@ function searchRooms() {
   const [authenticated, setAuthenticated] = useState<boolean>();
 
   const adRef = useRef<HTMLDivElement>(null);
+
+  const [clickedImg, setClickedImg] = useState<string>('');
 
   useEffect(() => {
     axios.get(AD_URL).then((response) => {
@@ -64,6 +68,20 @@ function searchRooms() {
       : setAuthenticated(false);
   });
 
+  const handleClick = (ad: Ad) => {
+    console.log('chegou aqui');
+    setClickedImg(BASE_URL + IMG_URL + ad.room?.roomImage?.id);
+    return (
+      <div className="wrapper">
+        <div>
+          {clickedImg && (
+            <ImageModal clickedImg={clickedImg} setClickedImg={setClickedImg} />
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div
@@ -71,7 +89,7 @@ function searchRooms() {
           hideSearchBar ? 'hidden' : `search ${search && 'search-active'}`
         }
       >
-        <a href="#ads">
+        <a href="#ads" aria-label="Search">
           <FontAwesomeIcon icon={faMagnifyingGlass} className="search__icon" />
         </a>
         <input
@@ -106,16 +124,24 @@ function searchRooms() {
               return (
                 <>
                   <Item key={'ad_' + ad.id}>
-                    <Item.Image
-                      label
+                    <img
+                      onClick={() => {
+                        handleClick(ad);
+                      }}
+                      className="img"
                       src={
                         ad.room?.roomImage?.id != undefined
                           ? BASE_URL + IMG_URL + ad.room?.roomImage?.id
                           : getRandomRoom()
                       }
+                      alt={'Photo of the room ' + ad.room.roomType}
+                      // height="250px"
                     />
-                    <Item.Content>
-                      <Item.Header as="a">
+                    <Item.Content
+                      key={'ad_content_' + ad.id}
+                      className="content"
+                    >
+                      <Item.Header as="text">
                         {ad.room?.streetAddress.replace(regex, '')}
                       </Item.Header>
 
@@ -128,6 +154,7 @@ function searchRooms() {
                         href={
                           authenticated ? 'mailto:' + ad.user?.email : '/login'
                         }
+                        aria-label="Email landlord"
                       >
                         <FontAwesomeIcon
                           icon={faEnvelope}
@@ -182,7 +209,13 @@ function searchRooms() {
                           <Icon name="euro sign" />
                           {ad.rent} / month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                           {ad.billsIncluded ? (
-                            <Label as="a" color="teal" size="small" horizontal>
+                            <Label
+                              as="a"
+                              color="black"
+                              className="bills"
+                              size="small"
+                              horizontal
+                            >
                               Bills Included
                             </Label>
                           ) : (

@@ -1,69 +1,63 @@
-.overlay {
-    background-color: rgba(0,0,0,0.5);
-    background-image: url('../../assets/img/cover-scheme.jpg');
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    z-index: 2;
-    top: 100px;
-    left: 0;
-    position: absolute;
-    object-fit: cover;
-    opacity: 1;
-    
-
+.overlay3 {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url('../../assets/img/cover-scheme.webp');
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+  top: 100px;
+  left: 0;
+  position: absolute;
+  object-fit: cover;
+  opacity: 1;
 }
 
 .modalContainer {
-    padding: 0 30px;
-    max-width: 70%;
-    width: 100%;
-    max-height: 75%;
-    height: 100%;
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    background-color: rgba(0,0,0,0.7);
-    box-shadow: 0 0 18px 0 #fff;
-    overflow-y: scroll;
-    margin-top: 10%;
+  padding: 0 30px;
+  max-width: 70%;
+  width: 100%;
+  max-height: 75%;
+  height: 100%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 18px 0 #fff;
+  overflow-y: scroll;
+  margin-top: 10%;
 }
 
 .closeBtn {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 20px;
+  position: fixed;
+  top: 20px;
+  right: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .closeBtn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
-.content{
-    padding: 40px 20px;
+.content {
+  padding: 40px 20px;
 }
 
-
-.content p{
-    font-size: 20px;
+.content p {
+  font-size: 20px;
 }
 
 .redirect {
-    /* position: fixed; */
-    display: flex;
-    flex-direction: row-reverse;
+  /* position: fixed; */
+  display: flex;
+  flex-direction: row-reverse;
 }
 
-
 @media screen and (max-width: 900px) {
-    
-    .modalContainer  {
-            top: 45%;
-    }
-    
+  .modalContainer {
+    top: 45%;
   }
+}

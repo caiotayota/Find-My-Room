@@ -18,7 +18,7 @@ function RentRoomScheme({ open, onClose }: any) {
 
   return (
     <>
-      <div className="overlay">
+      <div className="overlay3">
         <div className="modalContainer">
           <div className="modalRight">
             <p
